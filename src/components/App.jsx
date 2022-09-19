@@ -3,13 +3,12 @@ import { Box } from 'Box';
 import { StyledLink, Header } from './App.styled';
 import { GlobalStyle } from 'GlobalStyle';
 import { Home } from 'pages/Home/Home';
-import { Movies } from 'pages/Movies';
+import { Movies } from 'pages/Movies/Movies';
+import { MovieDetails } from '../pages/MovieDetails/MovieDetails';
 
 export const App = () => {
   return (
-    <Box
-      background="#e7ecf2"
-    >
+    <div>
       <Header>
         <nav>
           <StyledLink to="/">Home</StyledLink>
@@ -19,13 +18,13 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<Movies />} />
-        <Route path="movies/:movieId" element={<div>Movie Details</div>}>
+        <Route path="movies/:movieId" element={<MovieDetails/>}>
           <Route path="cast" element={<div>Cast</div>} />
           <Route path="reviews" element={<div>Reviews</div>} />
         </Route>
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
       <GlobalStyle />
-    </Box>
+    </div>
   );
 };

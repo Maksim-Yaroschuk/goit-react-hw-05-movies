@@ -19,3 +19,10 @@ export const getTrending = async (page = 1) => {
     );
     return data;
 };
+
+export const getFilmById = async (id) => {
+        const { data } = await axios.get(
+        `/movie/${id}?api_key=${API_KEY}`
+    );
+    return data;
+}
