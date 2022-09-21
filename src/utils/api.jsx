@@ -24,5 +24,6 @@ export const getFilmById = async (id) => {
         const { data } = await axios.get(
         `/movie/${id}?api_key=${API_KEY}`
     );
+    console.log(data)
     return data;
 }
