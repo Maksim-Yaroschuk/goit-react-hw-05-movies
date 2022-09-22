@@ -1,30 +1,32 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { getFilmById, IMG_W200, BASE_IMG_URL } from 'utils/api';
+import { getFilmById, IMG_W300, BASE_IMG_URL } from 'utils/api';
 import {
-  StyledLink,
+  GoBackLink,
   FilmContainer,
   FilmTitle,
   VoteAverage,
   BlockTitle,
   Overview,
   GenreList,
+  Container,
+  AditionalInfoContainer,
+  AditionalInfoLink,
 } from './MovieDetails.styled';
 
-export const MovieDetails = ({ movie = 'not movie' }) => {
+export const MovieDetails = () => {
   const { movieId } = useParams();
   const [filmInfo, setFilmInfo] = useState({});
   const [filmGenres, setFilmGenres] = useState([]);
   const releaseYear = new Date(filmInfo.release_date).getFullYear();
-//   const fixedAverage = filmInfo.vote_average.toFixed(1);
+  const location = useLocation();
 
   useEffect(() => {
     try {
       getFilmById(movieId).then(r => {
         setFilmInfo(r);
         setFilmGenres(r.genres);
-        console.log(r);
       });
     } catch (error) {
       toast.error(error, { autoClose: 1000 });
@@ -32,16 +34,16 @@ export const MovieDetails = ({ movie = 'not movie' }) => {
   }, [movieId]);
 
   return (
-    <>
-      <StyledLink to={'/'}>Go back</StyledLink>
+    <Container>
+      <GoBackLink to={'/'}>Go back</GoBackLink>
       <FilmContainer>
-        <li>
+        <div>
           <img
-            src={`${BASE_IMG_URL}${IMG_W200}${filmInfo.poster_path}`}
+            src={`${BASE_IMG_URL}${IMG_W300}${filmInfo.poster_path}`}
             alt={filmInfo.title}
           />
-        </li>
-        <li>
+        </div>
+        <div>
           <FilmTitle>
             {filmInfo.title} ({releaseYear})
           </FilmTitle>
@@ -54,12 +56,18 @@ export const MovieDetails = ({ movie = 'not movie' }) => {
           {
             <GenreList>
               {filmGenres.map(({ name }) => {
-                return <li>{name}</li>;
+                return <li key={name}>{name}</li>;
               })}
             </GenreList>
           }
-        </li>
+        </div>
       </FilmContainer>
-    </>
+      <BlockTitle>Aditional information</BlockTitle>
+      <AditionalInfoContainer>
+        <li><AditionalInfoLink to="cast" state={{ from: location.pathname }}>Cast</AditionalInfoLink></li>
+        <li><AditionalInfoLink to="reviews" state={{ from: location.pathname }}>Reviews</AditionalInfoLink></li>
+      </AditionalInfoContainer>
+      <Outlet context={movieId}/>
+    </Container>
   );
 };

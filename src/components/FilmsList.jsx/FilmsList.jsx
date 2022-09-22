@@ -12,8 +12,8 @@ export const FilmsList = ({ films }) => {
     <FilmsContainer>
       {films.map(({ id, title, poster_path }) => {
         return (
-          <Link to={`/movies/${id}`}>
-            <FilmItem key={id} onClick={() => console.log(id)}>
+          <Link to={`/movies/${id}`} key={id}>
+            <FilmItem>
               <FilmPoster
                 src={`${BASE_IMG_URL}${IMG_W300}${poster_path}`}
                 alt={title}

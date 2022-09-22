@@ -21,9 +21,19 @@ export const getTrending = async (page = 1) => {
 };
 
 export const getFilmById = async (id) => {
-        const { data } = await axios.get(
+    const { data } = await axios.get(
         `/movie/${id}?api_key=${API_KEY}`
     );
     console.log(data)
     return data;
-}
+};
+
+export const getMovieCast = async id => {
+    const { data } = await axios.get(`/movie/${id}/credits?api_key=${API_KEY}`);
+    return data;
+};
+
+export const getMovieReviews = async id => {
+    const { data } = await axios.get(`/movie/${id}/reviews?api_key=${API_KEY}`);
+    return data;
+};
