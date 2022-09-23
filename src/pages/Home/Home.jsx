@@ -12,7 +12,6 @@ export const Home = () => {
     try {
       getTrending().then(r => {
         setFilms(r.results);
-        console.log(r.results);
       });
     } catch (error) {
       toast.error(error, { autoClose: 1000 });

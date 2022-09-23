@@ -13,13 +13,15 @@ export const App = () => {
       <Header>
         <nav>
           <StyledLink to="/">Home</StyledLink>
-          <StyledLink to="movies">Movies</StyledLink>
+          <StyledLink to="/movies">Movies</StyledLink>
         </nav>
       </Header>
       <Routes>
+        {/* <Route index element={<Home />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<Movies />} />
         <Route path="movies/:movieId" element={<MovieDetails />}>
+          {/* <Route index element="For more information, please click the appropriate button👆" /> */}
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>

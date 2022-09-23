@@ -8,8 +8,6 @@ export const Cast = () => {
   const [cast, setCast] = useState([]);
   const movieId = useOutletContext();
 
-  console.log(movieId);
-
   useEffect(() => {
     try {
       getMovieCast(movieId).then(r => {
