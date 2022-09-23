@@ -4,7 +4,7 @@ import { getMovieCast, BASE_IMG_URL, IMG_W200 } from 'utils/api';
 import { toast } from 'react-toastify';
 import { CastContainer, CastPoster, CastName } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
   const movieId = useOutletContext();
 
@@ -23,7 +23,7 @@ export const Cast = () => {
       <CastContainer>
         {cast.map(({ id, original_name, profile_path }) => {
           return (
-            <li key={id}>
+            <li>
               <CastPoster
                 src={`${BASE_IMG_URL}${IMG_W200}${profile_path}`}
                 alt={original_name}
@@ -36,3 +36,5 @@ export const Cast = () => {
     </div>
   );
 };
+
+export default Cast;

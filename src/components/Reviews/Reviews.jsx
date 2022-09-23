@@ -4,7 +4,7 @@ import { getMovieReviews } from 'utils/api';
 import { toast } from 'react-toastify';
 import { ReviewsContainer } from './Reviews.styled';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const movieId = useOutletContext();
 
@@ -35,3 +35,5 @@ export const Reviews = () => {
     </div>
   );
 };
+
+export default Reviews;

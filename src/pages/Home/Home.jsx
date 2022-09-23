@@ -5,7 +5,7 @@ import { FilmsList } from 'components/FilmsList.jsx/FilmsList';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const Home = () => {
+const Home = () => {
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
@@ -24,3 +24,5 @@ export const Home = () => {
     </main>
   );
 };
+
+export default Home;

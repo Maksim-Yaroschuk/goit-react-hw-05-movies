@@ -1,5 +1,5 @@
 import { useParams, useLocation, Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { toast } from 'react-toastify';
 import { getFilmById, IMG_W300, BASE_IMG_URL } from 'utils/api';
 import {
@@ -15,7 +15,7 @@ import {
   AditionalInfoLink,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [filmInfo, setFilmInfo] = useState({});
   const [filmGenres, setFilmGenres] = useState([]);
@@ -64,10 +64,22 @@ export const MovieDetails = () => {
       </FilmContainer>
       <BlockTitle>Aditional information</BlockTitle>
       <AditionalInfoContainer>
-        <li><AditionalInfoLink to="cast" state={{ from: location.pathname }}>Cast</AditionalInfoLink></li>
-        <li><AditionalInfoLink to="reviews" state={{ from: location.pathname }}>Reviews</AditionalInfoLink></li>
+        <li>
+          <AditionalInfoLink to="cast" state={{ from: location.pathname }}>
+            Cast
+          </AditionalInfoLink>
+        </li>
+        <li>
+          <AditionalInfoLink to="reviews" state={{ from: location.pathname }}>
+            Reviews
+          </AditionalInfoLink>
+        </li>
       </AditionalInfoContainer>
-      <Outlet context={movieId}/>
+      <Suspense>
+        <Outlet context={movieId} />
+      </Suspense>
     </Container>
   );
 };
+
+export default MovieDetails;
