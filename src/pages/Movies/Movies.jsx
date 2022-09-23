@@ -33,7 +33,7 @@ export const Movies = () => {
   }, [searchQuery]);
 
   return (
-    <div>
+    <main>
       <SearchForm onSubmit={searchFilms}>
         <input
           type="text"
@@ -44,6 +44,6 @@ export const Movies = () => {
         <button type="submit">Search</button>
       </SearchForm>
       <FilmsList films={films} />
-    </div>
+    </main>
   );
 };

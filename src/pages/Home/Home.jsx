@@ -18,9 +18,9 @@ export const Home = () => {
     }
   }, []);
   return (
-    <div>
+    <main>
       <HomeTitle>Most popular films of the week</HomeTitle>
       <FilmsList films={films} />
-    </div>
+    </main>
   );
 };

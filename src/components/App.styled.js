@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const StyledLink = styled(NavLink)`
   padding: 8px 16px;
