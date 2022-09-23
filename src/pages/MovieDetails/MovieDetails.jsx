@@ -75,7 +75,7 @@ const MovieDetails = () => {
           </AditionalInfoLink>
         </li>
       </AditionalInfoContainer>
-      <Suspense>
+      <Suspense fallback={<div>Loading page...</div>}>
         <Outlet context={movieId} />
       </Suspense>
     </Container>
