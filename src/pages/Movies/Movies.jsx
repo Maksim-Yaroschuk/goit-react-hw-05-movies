@@ -1,6 +1,6 @@
 import { SearchForm } from './Movies.styled';
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getSearchMovie } from 'utils/api';
 import { FilmsList } from 'components/FilmsList.jsx/FilmsList';
@@ -9,6 +9,8 @@ const Movies = () => {
   const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation()
+  const toBackLocation = `${location.pathname}${location.search}`
 
   const searchFilms = event => {
     event.preventDefault();
@@ -30,7 +32,10 @@ const Movies = () => {
     getSearchMovie(searchQuery).then(({ total_pages, results }) =>
       setFilms(results)
     );
-  }, [searchQuery]);
+
+    console.log(toBackLocation)
+
+  }, [searchQuery, toBackLocation]);
 
   return (
     <main>
@@ -43,7 +48,7 @@ const Movies = () => {
         />
         <button type="submit">Search</button>
       </SearchForm>
-      <FilmsList films={films} />
+      <FilmsList films={films} location={toBackLocation} />
     </main>
   );
 };

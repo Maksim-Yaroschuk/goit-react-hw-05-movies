@@ -23,7 +23,7 @@ const Cast = () => {
       <CastContainer>
         {cast.map(({ id, original_name, profile_path }) => {
           return (
-            <li>
+            <li key={id}> 
               <CastPoster
                 src={`${BASE_IMG_URL}${IMG_W200}${profile_path}`}
                 alt={original_name}

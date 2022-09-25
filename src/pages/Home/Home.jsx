@@ -10,11 +10,9 @@ const Home = () => {
 
   useEffect(() => {
     try {
-      getTrending().then(r => {
-        setFilms(r.results);
-      });
+      getTrending().then(r => setFilms(r.results));
     } catch (error) {
-      toast.error(error, { autoClose: 1000 });
+      console.log(error);
     }
   }, []);
   return (

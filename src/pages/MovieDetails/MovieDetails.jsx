@@ -1,5 +1,5 @@
 import { useParams, useLocation, Outlet } from 'react-router-dom';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { getFilmById, IMG_W300, BASE_IMG_URL } from 'utils/api';
 import {
@@ -27,6 +27,7 @@ const MovieDetails = () => {
       getFilmById(movieId).then(r => {
         setFilmInfo(r);
         setFilmGenres(r.genres);
+        console.log(location.state.from)
       });
     } catch (error) {
       toast.error(error, { autoClose: 1000 });
@@ -35,7 +36,7 @@ const MovieDetails = () => {
 
   return (
     <Container>
-      <GoBackLink to={'/'}>Go back</GoBackLink>
+      <GoBackLink to={location.state.from ?? '/'}>Go back</GoBackLink>
       <FilmContainer>
         <div>
           <img
@@ -65,12 +66,12 @@ const MovieDetails = () => {
       <BlockTitle>Aditional information</BlockTitle>
       <AditionalInfoContainer>
         <li>
-          <AditionalInfoLink to="cast" state={{ from: location.pathname }}>
+          <AditionalInfoLink to="cast" state={{ from: location.state.from }}>
             Cast
           </AditionalInfoLink>
         </li>
         <li>
-          <AditionalInfoLink to="reviews" state={{ from: location.pathname }}>
+          <AditionalInfoLink to="reviews" state={{ from: location.state.from }}>
             Reviews
           </AditionalInfoLink>
         </li>
