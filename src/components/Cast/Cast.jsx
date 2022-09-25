@@ -1,7 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieCast, BASE_IMG_URL, IMG_W200 } from 'utils/api';
-import { toast } from 'react-toastify';
 import { CastContainer, CastPoster, CastName } from './Cast.styled';
 
 const Cast = () => {
@@ -14,7 +13,7 @@ const Cast = () => {
         setCast(r.cast);
       });
     } catch (error) {
-      toast.error(error, { autoClose: 1000 });
+      console.log(error);
     }
   }, [movieId]);
 
@@ -23,7 +22,7 @@ const Cast = () => {
       <CastContainer>
         {cast.map(({ id, original_name, profile_path }) => {
           return (
-            <li key={id}> 
+            <li key={id}>
               <CastPoster
                 src={`${BASE_IMG_URL}${IMG_W200}${profile_path}`}
                 alt={original_name}

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { getTrending } from 'utils/api';
 import { HomeTitle } from './Home.styled';
 import { FilmsList } from 'components/FilmsList.jsx/FilmsList';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {

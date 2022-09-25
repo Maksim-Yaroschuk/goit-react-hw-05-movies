@@ -1,6 +1,5 @@
 import { useParams, useLocation, Outlet } from 'react-router-dom';
-import { useState, useEffect, Suspense, useRef } from 'react';
-import { toast } from 'react-toastify';
+import { useState, useEffect, Suspense } from 'react';
 import { getFilmById, IMG_W300, BASE_IMG_URL } from 'utils/api';
 import {
   GoBackLink,
@@ -27,10 +26,9 @@ const MovieDetails = () => {
       getFilmById(movieId).then(r => {
         setFilmInfo(r);
         setFilmGenres(r.genres);
-        console.log(location.state.from)
       });
     } catch (error) {
-      toast.error(error, { autoClose: 1000 });
+      console.log(error);
     }
   }, [movieId]);
 

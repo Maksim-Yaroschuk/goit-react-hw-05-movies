@@ -1,14 +1,11 @@
 import { useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieReviews } from 'utils/api';
-import { toast } from 'react-toastify';
 import { ReviewsContainer } from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const movieId = useOutletContext();
-
-  console.log(movieId);
 
   useEffect(() => {
     try {
@@ -16,7 +13,7 @@ const Reviews = () => {
         setReviews(r.results);
       });
     } catch (error) {
-      toast.error(error, { autoClose: 1000 });
+      console.log(error);
     }
   }, [movieId]);
 

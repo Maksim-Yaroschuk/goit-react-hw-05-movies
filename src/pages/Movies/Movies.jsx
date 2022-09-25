@@ -9,12 +9,11 @@ const Movies = () => {
   const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation()
-  const toBackLocation = `${location.pathname}${location.search}`
+  const location = useLocation();
+  const toBackLocation = `${location.pathname}${location.search}`;
 
   const searchFilms = event => {
     event.preventDefault();
-    console.log(event.target.findForm.value);
     if (query.trim() === '') {
       return toast('Nothing entered', { autoClose: 1000 });
     }
@@ -32,10 +31,7 @@ const Movies = () => {
     getSearchMovie(searchQuery).then(({ total_pages, results }) =>
       setFilms(results)
     );
-
-    console.log(toBackLocation)
-
-  }, [searchQuery, toBackLocation]);
+  }, [searchQuery]);
 
   return (
     <main>
