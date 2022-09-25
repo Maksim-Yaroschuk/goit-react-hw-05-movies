@@ -14,6 +14,7 @@ const Home = () => {
       console.log(error);
     }
   }, []);
+
   return (
     <main>
       <HomeTitle>Most popular films of the week</HomeTitle>
