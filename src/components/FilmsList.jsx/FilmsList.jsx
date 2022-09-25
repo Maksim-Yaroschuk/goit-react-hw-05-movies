@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { IMG_W300, BASE_IMG_URL } from 'utils/api';
 import {
   FilmsContainer,
@@ -25,4 +26,9 @@ export const FilmsList = ({ films, location }) => {
       })}
     </FilmsContainer>
   );
+};
+
+FilmsList.propTypes = {
+  films: PropTypes.array.isRequired,
+  location: PropTypes.string,
 };
