@@ -15,7 +15,7 @@ export const FilmsList = ({ films, location }) => {
           <Link to={`/movies/${id}`} key={id} state={{ from: location }}>
             <FilmItem>
               <FilmPoster
-                src={`${BASE_IMG_URL}${IMG_W300}${poster_path}`}
+                src={poster_path !== null ? `${BASE_IMG_URL}${IMG_W300}${poster_path}` : 'https://houseofzayn.co.nz/wp-content/uploads/2019/08/nopicture.gif'}
                 alt={title}
               />
               <FilmTitle>{title}</FilmTitle>

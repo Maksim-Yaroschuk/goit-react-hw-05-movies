@@ -24,9 +24,12 @@ export const FilmItem = styled.li`
 export const FilmPoster = styled.img`
   border-radius: inherit;
   box-shadow: 0px 3px 4px 1px rgba(44, 133, 200, 0.2);
+  height: 450px;
+  max-width: 300px;
 `;
 
 export const FilmTitle = styled.h2`
   font-size: 16px;
   font-weight: 700;
+  max-width: 300px;
 `;

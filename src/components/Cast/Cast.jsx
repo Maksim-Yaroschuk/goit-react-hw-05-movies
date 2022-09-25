@@ -24,7 +24,7 @@ const Cast = () => {
           return (
             <li key={id}>
               <CastPoster
-                src={`${BASE_IMG_URL}${IMG_W200}${profile_path}`}
+                src={profile_path !== null ? `${BASE_IMG_URL}${IMG_W200}${profile_path}` : 'https://houseofzayn.co.nz/wp-content/uploads/2019/08/nopicture.gif'}
                 alt={original_name}
               />
               <CastName>{original_name}</CastName>

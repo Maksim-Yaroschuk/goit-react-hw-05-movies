@@ -38,7 +38,7 @@ const MovieDetails = () => {
       <FilmContainer>
         <div>
           <img
-            src={`${BASE_IMG_URL}${IMG_W300}${filmInfo.poster_path}`}
+            src={filmInfo.poster_path !== null ? `${BASE_IMG_URL}${IMG_W300}${filmInfo.poster_path}` : 'https://houseofzayn.co.nz/wp-content/uploads/2019/08/nopicture.gif'}
             alt={filmInfo.title}
           />
         </div>
@@ -82,3 +82,6 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
+
+
+// `${BASE_IMG_URL}${IMG_W300}${filmInfo.poster_path}`
