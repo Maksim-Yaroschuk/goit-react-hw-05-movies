@@ -18,7 +18,8 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [filmInfo, setFilmInfo] = useState({});
   const [filmGenres, setFilmGenres] = useState([]);
-  const releaseYear = new Date(filmInfo.release_date).getFullYear();
+  const { poster_path, title, vote_average, overview, release_date } = filmInfo;
+  const releaseYear = new Date(release_date).getFullYear();
   const location = useLocation();
 
   useEffect(() => {
@@ -32,25 +33,31 @@ const MovieDetails = () => {
     }
   }, [movieId]);
 
+  
+
   return (
     <Container>
       <GoBackLink to={location.state.from ?? '/'}>Go back</GoBackLink>
       <FilmContainer>
         <div>
           <img
-            src={filmInfo.poster_path !== null ? `${BASE_IMG_URL}${IMG_W300}${filmInfo.poster_path}` : 'https://houseofzayn.co.nz/wp-content/uploads/2019/08/nopicture.gif'}
-            alt={filmInfo.title}
+            src={
+              poster_path !== null
+                ? `${BASE_IMG_URL}${IMG_W300}${poster_path}`
+                : 'https://houseofzayn.co.nz/wp-content/uploads/2019/08/nopicture.gif'
+            }
+            alt={title}
           />
         </div>
         <div>
           <FilmTitle>
-            {filmInfo.title} ({releaseYear})
+            {title} ({releaseYear})
           </FilmTitle>
           <VoteAverage>
-            <span>Average:</span> {filmInfo.vote_average}
+            <span>Average:</span> {vote_average}
           </VoteAverage>
           <BlockTitle>Overview</BlockTitle>
-          <Overview>{filmInfo.overview}</Overview>
+          <Overview>{overview}</Overview>
           <BlockTitle>Genres</BlockTitle>
           {
             <GenreList>
@@ -82,6 +89,3 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
-
-
-// `${BASE_IMG_URL}${IMG_W300}${filmInfo.poster_path}`
