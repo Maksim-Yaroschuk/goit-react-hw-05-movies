@@ -2,6 +2,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieCast, BASE_IMG_URL, IMG_W200 } from 'utils/api';
 import { CastContainer, CastPoster, CastName } from './Cast.styled';
+import { Message } from 'pages/Movies/Movies.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -19,6 +20,7 @@ const Cast = () => {
 
   return (
     <div>
+      {!cast.length && <Message>Sorry! Information not found</Message>}
       <CastContainer>
         {cast.map(({ id, original_name, profile_path }) => {
           return (

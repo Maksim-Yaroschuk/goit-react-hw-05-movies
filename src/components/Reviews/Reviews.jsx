@@ -2,6 +2,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieReviews } from 'utils/api';
 import { ReviewsContainer } from './Reviews.styled';
+import { Message } from 'pages/Movies/Movies.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -19,6 +20,7 @@ const Reviews = () => {
 
   return (
     <div>
+      {!reviews.length && <Message>Sorry! Information not found</Message>}
       <ReviewsContainer>
         {reviews.map(({ id, author, content }) => {
           return (
